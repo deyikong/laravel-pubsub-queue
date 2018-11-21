@@ -11,6 +11,13 @@ use Illuminate\Contracts\Queue\Queue as QueueContract;
 
 class PubSubQueue extends Queue implements QueueContract
 {
+
+    /**
+     * The name of the subscriber, default to `subscriber`.
+     *
+     * @var string $subscriberName
+     */
+    protected $subscriberName = 'subscriber';
     /**
      * The PubSubClient instance.
      *
@@ -256,7 +263,18 @@ class PubSubQueue extends Queue implements QueueContract
      */
     public function getSubscriberName()
     {
-        return 'subscriber';
+        return $this->subscriberName;
+    }
+
+    /**
+     * Set subscriber name.
+     *
+     * @param string $subscriberName
+     * @return void
+     */
+    public function setSubscriberName(string $subscriberName)
+    {
+        $this->subscriberName = $subscriberName;
     }
 
     /**
