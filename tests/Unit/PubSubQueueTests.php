@@ -311,7 +311,23 @@ class PubSubQueueTests extends TestCase
 
     public function testGetSubscriberName()
     {
-        $this->assertTrue(is_string($this->queue->getSubscriberName()));
+        $queue = $this->getMockBuilder(PubSubQueue::class)
+            ->setConstructorArgs([$this->client, 'default'])
+            ->setMethods()
+            ->getMock();
+        $this->assertTrue(is_string($queue->getSubscriberName()));
+        return $queue;
+    }
+
+    /**
+     * @depends testGetSubscriberName
+     * @param PubSubQueue $queue
+     */
+    public function testSetSubscriberName(PubSubQueue $queue)
+    {
+        $subscriberName = 'test-subscriber';
+        $queue->setSubscriberName($subscriberName);
+        $this->assertEquals($subscriberName, $queue->getSubscriberName());
     }
 
     public function testGetPubSub()
