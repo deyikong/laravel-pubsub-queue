@@ -39,6 +39,7 @@ class PubSubQueueTests extends TestCase
                 'subscription',
                 'availableAt',
                 'subscribeToTopic',
+                'getSubscriberName',
             ])->getMock();
     }
 
@@ -204,8 +205,14 @@ class PubSubQueueTests extends TestCase
         $this->queue->method('getTopic')
             ->willReturn($this->topic);
 
+        $this->queue->method('getSubscriberName')
+            ->willReturn('subscriber');
+
         $this->queue->method('availableAt')
             ->willReturn($delay_timestamp);
+
+        $this->topic->method('subscription')
+            ->willReturn($this->subscription);
 
         $this->topic->expects($this->once())
             ->method('publish')

@@ -86,7 +86,7 @@ class PubSubJob extends Job implements JobContract
 
         $attempts = $this->attempts();
 
-        $this->pubsub->acknowledgeAndPublish(
+        $this->pubsub->republish(
             $this->job,
             $this->queue,
             ['attempts' => $attempts],
