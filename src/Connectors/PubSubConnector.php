@@ -16,6 +16,13 @@ class PubSubConnector implements ConnectorInterface
     protected $default_queue = 'default';
 
     /**
+     * Default subscriber name.
+     *
+     * @var string
+     */
+    protected $default_subscriber = 'subscriber';
+
+    /**
      * Establish a queue connection.
      *
      * @param  array  $config
@@ -27,7 +34,8 @@ class PubSubConnector implements ConnectorInterface
 
         return new PubSubQueue(
             new PubSubClient($gcp_config),
-            $config['queue'] ?? $this->default_queue
+            $config['queue'] ?? $this->default_queue,
+            $config['subscriber'] ?? $this->default_subscriber
         );
     }
 

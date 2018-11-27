@@ -18,7 +18,7 @@ class PubSubQueue extends Queue implements QueueContract
      *
      * @var string $subscriberName
      */
-    protected $subscriberName = 'subscriber';
+    protected $subscriberName;
     /**
      * The PubSubClient instance.
      *
@@ -37,12 +37,14 @@ class PubSubQueue extends Queue implements QueueContract
      * Create a new GCP PubSub instance.
      *
      * @param \Google\Cloud\PubSub\PubSubClient $pubsub
-     * @param string $default
+     * @param string                            $default
+     * @param string                            $subscriberName
      */
-    public function __construct(PubSubClient $pubsub, $default)
+    public function __construct(PubSubClient $pubsub, $default, string $subscriberName)
     {
         $this->pubsub = $pubsub;
         $this->default = $default;
+        $this->subscriberName = $subscriberName;
     }
 
     /**
