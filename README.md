@@ -31,7 +31,8 @@ You can check [Google Cloud PubSub client](http://googlecloudplatform.github.io/
     'queue' => env('PUBSUB_QUEUE', 'default'),
     'project_id' => env('PUBSUB_PROJECT_ID', 'your-project-id'),
     'retries' => 3,
-    'request_timeout' => 60
+    'request_timeout' => 60,
+    'subscriber' => 'subscriber',
 ],
 ```
 
