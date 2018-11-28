@@ -212,7 +212,7 @@ class PubSubQueue extends Queue implements QueueContract
 
         return $topic->publish([
             'data' => $message->data(),
-            'attributes' => $options,
+            'attributes' => array_map('strval',$options),
         ]);
     }
 
